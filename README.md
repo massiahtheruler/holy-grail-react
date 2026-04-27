@@ -1,5 +1,11 @@
 # React + Vite
 
+i wish my 2 clones and other ecommerce for fes would get looked at lol - i worked so hard and took so much time on 
+-netflix clone almost perfect matching 1-1 even went above and beyond with auto play     videos and other features
+-twitter clone but family friendly - "glitter" a full functioning fullstack social media with brok my grok equivalent ai
+-and gocart my ecommerce where i made my own dark mode and style and finishes modals have stripe payments accounts vendors individual stores, and admin capabilities and so much more
+    it would be a tragedy if im the only one that knows about them please look ....thanks for hearing my rant thats all i got.
+    
 
 A Digital Showroom for rare sneakers — engineered with live price data, interactive 3D card physics, glassmorphism modals, and a tactile 'Book' UI pattern to create an acquisition experience that mirrors holding the item in your hands.
 
@@ -17,6 +23,7 @@ A Digital Showroom for rare sneakers — engineered with live price data, intera
 - loading.js reusable skeleton (replacing per-page versions)
 - Clear All Filters button that also resets URL params
 -  ScrollTrigger on footer logo
+-  dummy check out to show the placement and ability right now the database had no prices available so these are averages but does real math adding subtotal and tax adding and removing selections etc. and a dynamic cart counter displaying current inventory selected.
 
 planned features. 
 - Next.js — file-system routing, SSR, loading.js skeleton screens right now its using vite +
@@ -25,11 +32,12 @@ planned features.
 - - Mouse-follow radial gradient on dark background (the gallery spotlight)
   
 I plan to update database to functional with live stock and pricing allowing actual affiliate sales complete with
+-Stripe payment processing, i demonstrated this capability in gocart full stack project
 - Backend database upgrade for cart functions and multi vendor capabilities
 - Admin sections for control store appoval and discount handling
 - Price drop visual indicator (green arrow / pulse) for reduced items
-
 - - "Live Price" pulse tag on items with real-time updates
+
  
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
