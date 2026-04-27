@@ -2,6 +2,7 @@
 
 
 A Digital Showroom for rare sneakers — engineered with live price data, interactive 3D card physics, glassmorphism modals, and a tactile 'Book' UI pattern to create an acquisition experience that mirrors holding the item in your hands.
+
 - custom BEM-scoped Sass for high-fidelity UI details (glassmorphism and custom animations) that require pixel-perfect precision."
 - "Engineered a Digital Showroom experience using interactive parallax and glassmorphism to mirror the exclusivity of the collection."
 - "I chose to implement a custom BEM architecture to manage the complexity of the e-commerce routing."
@@ -12,13 +13,24 @@ A Digital Showroom for rare sneakers — engineered with live price data, intera
 - Glass shimmer effect on shoe modals
 - 'Book' modal — panels slide in from each side, meet centered
 - Tactile buttons — hover color shift, click glow, pointer
-- Price drop visual indicator (green arrow / pulse) for reduced items
-- - Mouse-follow radial gradient on dark background (the gallery spotlight)
-- GSAP ScrollTrigger on hero monogram
+-  I created parallax, entrance animations, hover tilts effects manually but instead of GSAP which was my plan 
 - loading.js reusable skeleton (replacing per-page versions)
 - Clear All Filters button that also resets URL params
-- "Live Price" pulse tag on items with real-time updates
+-  ScrollTrigger on footer logo
 
+planned features. 
+- Next.js — file-system routing, SSR, loading.js skeleton screens right now its using vite +
+    Browser router because of a smaller page site but will upgrade before scaling
+- Zustand — cart state, modal open/close state
+- - Mouse-follow radial gradient on dark background (the gallery spotlight)
+  
+I plan to update database to functional with live stock and pricing allowing actual affiliate sales complete with
+- Backend database upgrade for cart functions and multi vendor capabilities
+- Admin sections for control store appoval and discount handling
+- Price drop visual indicator (green arrow / pulse) for reduced items
+
+- - "Live Price" pulse tag on items with real-time updates
+ 
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
