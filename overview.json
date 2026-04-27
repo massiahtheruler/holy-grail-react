@@ -1,6 +1,6 @@
 {
   "rootFolder": "/Users/christinemarquez/Desktop/holy-grails-react",
-  "analyzedAt": "2026-04-26T04:10:12.653Z",
+  "analyzedAt": "2026-04-27T17:51:01.786Z",
   "rootStructure": [
     {
       "name": ".gitignore",
@@ -9,10 +9,28 @@
       "lines": 25
     },
     {
+      "name": "App.css",
+      "type": "file",
+      "size": 2891,
+      "lines": 185
+    },
+    {
       "name": "README.md",
       "type": "file",
-      "size": 1027,
-      "lines": 17
+      "size": 8934,
+      "lines": 194
+    },
+    {
+      "name": "app.js",
+      "type": "file",
+      "size": 15757,
+      "lines": 587
+    },
+    {
+      "name": "app1.js",
+      "type": "file",
+      "size": 3974,
+      "lines": 123
     },
     {
       "name": "dist",
@@ -25,6 +43,12 @@
       "lines": 22
     },
     {
+      "name": "index.css",
+      "type": "file",
+      "size": 2169,
+      "lines": 112
+    },
+    {
       "name": "index.html",
       "type": "file",
       "size": 369,
@@ -35,20 +59,38 @@
       "type": "dir"
     },
     {
+      "name": "overview.json",
+      "type": "file",
+      "size": 7164,
+      "lines": 318
+    },
+    {
+      "name": "overview_architecture.puml",
+      "type": "file",
+      "size": 246,
+      "lines": 7
+    },
+    {
       "name": "package-lock.json",
       "type": "file",
-      "size": 84818,
-      "lines": 2469
+      "size": 198536,
+      "lines": 5494
     },
     {
       "name": "package.json",
       "type": "file",
-      "size": 643,
-      "lines": 29
+      "size": 704,
+      "lines": 31
     },
     {
       "name": "public",
       "type": "dir"
+    },
+    {
+      "name": "search.js",
+      "type": "file",
+      "size": 14833,
+      "lines": 495
     },
     {
       "name": "src",
@@ -62,17 +104,53 @@
     }
   ],
   "rootFileSnippets": {
+    "App.css": [
+      ".counter {",
+      "font-size: 16px;",
+      "padding: 5px 10px;",
+      "border-radius: 5px;",
+      "color: var(--accent);",
+      "background: var(--accent-bg);",
+      "border: 2px solid transparent;",
+      "transition: border-color 0.3s;",
+      "margin-bottom: 24px;",
+      ""
+    ],
     "README.md": [
-      "# React + Vite",
+      "# Holy Grails React",
       "",
-      "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+      "Holy Grails React is my rebuild of a sneaker and streetwear showroom I originally built as a static HTML, CSS, and JavaScript project. Instead of scrapping the whole thing and starting over, I chose to convert it in stages so I could keep the visual identity, preserve the parts that already worked, and turn it into a cleaner React-based storefront shell I can keep expanding.",
       "",
-      "Currently, two official plugins are available:",
+      "This project is less about copying a generic ecommerce template and more about building a curated digital showroom. I wanted it to feel expressive, collectible, and tactile. The motion, hover behavior, card feel, route flow, and modal presentation were shaped by hand. I did not lean on GSAP snippets, Framer templates, or drag-and-drop visual builders to fake polish. The goal was to make the experience feel premium while still being coded in a way I fully understand and can keep evolving.",
       "",
-      "- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)",
-      "- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)",
+      "## Overview",
       "",
-      "## React Compiler"
+      "Holy Grails React is built around a staged conversion mindset.",
+      ""
+    ],
+    "app.js": [
+      "const API_HOST = \"kickscrew-sneakers-data.p.rapidapi.com\";",
+      "const API_KEY = \"732b5f336bmshb2f878b725963c2p1df8eajsn8ca303dc62fd\";",
+      "const DEFAULT_PRODUCT_ID = \"7265091813571\";",
+      "const CURRENCY = \"USD\";",
+      "const MAX_CARDS = 50;",
+      "",
+      "const shoeList = document.querySelector(\".shoe-list\");",
+      "const countText = document.querySelector(\"[data-shoe-count]\");",
+      "const pageText = document.querySelector(\"[data-page-info]\");",
+      "const prevButton = document.querySelector(\"[data-prev-page]\");"
+    ],
+    "app1.js": [
+      "const RAPIDAPI_HOST = \"kickscrew-sneakers-data.p.rapidapi.com\";",
+      "const DEFAULT_PRODUCT_ID = \"7265091813571\";",
+      "const DEFAULT_CURRENCY = \"USD\";",
+      "const DEFAULT_RAPIDAPI_KEY = \"732b5f336bmshb2f878b725963c2p1df8eajsn8ca303dc62fd\";",
+      "",
+      "function redirectNewPage(path = \"shop.html\") {",
+      "window.location.href = path;",
+      "}",
+      "",
+      "function getRecommendationsElements() {"
     ],
     "eslint.config.js": [
       "import js from '@eslint/js'",
@@ -86,6 +164,18 @@
       "{",
       "files: ['**/*.{js,jsx}'],"
     ],
+    "index.css": [
+      ":root {",
+      "--text: #6b6375;",
+      "--text-h: #08060d;",
+      "--bg: #fff;",
+      "--border: #e5e4e7;",
+      "--code-bg: #f4f3ec;",
+      "--accent: #aa3bff;",
+      "--accent-bg: rgba(170, 59, 255, 0.1);",
+      "--accent-border: rgba(170, 59, 255, 0.5);",
+      "--social-bg: rgba(244, 243, 236, 0.5);"
+    ],
     "index.html": [
       "<!doctype html>",
       "<html lang=\"en\">",
@@ -97,6 +187,27 @@
       "</head>",
       "<body>",
       "<div id=\"root\"></div>"
+    ],
+    "overview.json": [
+      "{",
+      "\"rootFolder\": \"/Users/christinemarquez/Desktop/holy-grails-react\",",
+      "\"analyzedAt\": \"2026-04-26T04:10:12.653Z\",",
+      "\"rootStructure\": [",
+      "{",
+      "\"name\": \".gitignore\",",
+      "\"type\": \"file\",",
+      "\"size\": 253,",
+      "\"lines\": 25",
+      "},"
+    ],
+    "overview_architecture.puml": [
+      "@startuml",
+      "' Generated by SASVA Maria on 2026-04-26T04:10:12.675Z",
+      "' ERROR: Diagram generation failed",
+      "",
+      "note \"Architecture Diagram Generation Failed\\n\\nError: No chat model configured\\n\\nPlease check the logs for more details.\" as ErrorNote",
+      "",
+      "@enduml"
     ],
     "package-lock.json": [
       "{",
@@ -122,6 +233,18 @@
       "\"lint\": \"eslint .\",",
       "\"preview\": \"vite preview\""
     ],
+    "search.js": [
+      "const API_HOST = \"kickscrew-sneakers-data.p.rapidapi.com\";",
+      "const API_KEY = \"732b5f336bmshb2f878b725963c2p1df8eajsn8ca303dc62fd\";",
+      "const HITS_PER_PAGE = 16;",
+      "const SEARCH_PAGES_TO_LOAD = 3;",
+      "",
+      "const searchInput = document.querySelector(\"[data-search-input]\");",
+      "const resultsList = document.querySelector(\"[data-search-results]\");",
+      "const countText = document.querySelector(\"[data-search-count]\");",
+      "const pageText = document.querySelector(\"[data-search-page]\");",
+      "const prevButton = document.querySelector(\"[data-search-prev]\");"
+    ],
     "vite.config.js": [
       "import { defineConfig } from 'vite'",
       "import react from '@vitejs/plugin-react'",
@@ -140,31 +263,48 @@
       "fileCount": 55
     },
     {
+      "path": "public/assets",
+      "category": "assets",
+      "fileCount": 55
+    },
+    {
       "path": "src/assets",
       "category": "assets",
-      "fileCount": 3
+      "fileCount": 55
+    },
+    {
+      "path": "src/components",
+      "category": "frontend",
+      "fileCount": 4,
+      "primaryLanguage": "JavaScript"
+    },
+    {
+      "path": "src/lib",
+      "category": "core",
+      "fileCount": 1,
+      "primaryLanguage": "JavaScript"
     }
   ],
   "readmeParagraphs": {
-    "root": "# React + Vite"
+    "root": "# Holy Grails React"
   },
   "totals": {
-    "numFiles": 77,
-    "numDirs": 5,
-    "totalSizeBytes": 30976499,
-    "totalLinesOfCode": 1617
+    "numFiles": 139,
+    "numDirs": 10,
+    "totalSizeBytes": 61889026,
+    "totalLinesOfCode": 3306
   },
   "fileCategories": {
-    "other": 67,
+    "other": 119,
     "documentation": 1,
-    "source": 7,
-    "config": 2
+    "source": 16,
+    "config": 3
   },
   "linesOfCodePerLanguage": {
-    "JavaScript": 1617
+    "JavaScript": 3306
   },
   "filesPerLanguage": {
-    "JavaScript": 7
+    "JavaScript": 16
   },
   "projectTypes": [
     "JavaScript/Node.js"
@@ -181,8 +321,8 @@
   "topLevelDirectories": [
     {
       "name": "src",
-      "numFiles": 14,
-      "totalLoc": 1587,
+      "numFiles": 69,
+      "totalLoc": 2071,
       "dominantLanguage": "JavaScript"
     },
     {
@@ -196,20 +336,53 @@
       "path": "src",
       "name": "src",
       "level": 1,
-      "numFiles": 14,
-      "totalLoc": 1587,
+      "numFiles": 69,
+      "totalLoc": 2071,
       "dominantLanguage": "JavaScript",
       "category": "General",
-      "description": "General module with 14 files (JavaScript)",
+      "description": "General module with 69 files (JavaScript)",
       "subdirectories": [
+        {
+          "path": "src/pages",
+          "name": "pages",
+          "level": 2,
+          "numFiles": 6,
+          "totalLoc": 1387,
+          "dominantLanguage": "JavaScript",
+          "category": "General",
+          "description": "General module with 6 files (JavaScript)",
+          "subdirectories": []
+        },
+        {
+          "path": "src/components",
+          "name": "components",
+          "level": 2,
+          "numFiles": 4,
+          "totalLoc": 457,
+          "dominantLanguage": "JavaScript",
+          "category": "General",
+          "description": "General module with 4 files (JavaScript)",
+          "subdirectories": []
+        },
+        {
+          "path": "src/lib",
+          "name": "lib",
+          "level": 2,
+          "numFiles": 1,
+          "totalLoc": 85,
+          "dominantLanguage": "JavaScript",
+          "category": "Library",
+          "description": "Library module with 1 files (JavaScript)",
+          "subdirectories": []
+        },
         {
           "path": "src/assets",
           "name": "assets",
           "level": 2,
-          "numFiles": 3,
+          "numFiles": 55,
           "totalLoc": 0,
           "category": "General",
-          "description": "General module with 3 files",
+          "description": "General module with 55 files",
           "subdirectories": []
         }
       ]
@@ -222,7 +395,18 @@
       "totalLoc": 0,
       "category": "General",
       "description": "General module with 55 files",
-      "subdirectories": []
+      "subdirectories": [
+        {
+          "path": "public/assets",
+          "name": "assets",
+          "level": 2,
+          "numFiles": 55,
+          "totalLoc": 0,
+          "category": "General",
+          "description": "General module with 55 files",
+          "subdirectories": []
+        }
+      ]
     }
   ],
   "architecturalInsights": {
@@ -242,51 +426,99 @@
   },
   "largeFiles": [
     {
-      "path": "public/Colorful triangle with splattered paint.png",
+      "path": "public/assets/Colorful triangle with splattered paint.png",
       "sizeMb": 2.3
     },
     {
-      "path": "public/Glowing pink ring with black outline.png",
+      "path": "src/assets/Colorful triangle with splattered paint.png",
+      "sizeMb": 2.3
+    },
+    {
+      "path": "public/assets/Glowing pink ring with black outline.png",
       "sizeMb": 2.18
     },
     {
-      "path": "public/new-design (2).png",
+      "path": "src/assets/Glowing pink ring with black outline.png",
+      "sizeMb": 2.18
+    },
+    {
+      "path": "public/assets/new-design (2).png",
       "sizeMb": 2.16
     },
     {
-      "path": "public/Bold purple triangle with jagged border.png",
+      "path": "src/assets/new-design (2).png",
+      "sizeMb": 2.16
+    },
+    {
+      "path": "public/assets/Bold purple triangle with jagged border.png",
       "sizeMb": 2.01
     },
     {
-      "path": "public/Vibrant 90s squiggly rainbow shape.png",
+      "path": "src/assets/Bold purple triangle with jagged border.png",
+      "sizeMb": 2.01
+    },
+    {
+      "path": "public/assets/Vibrant 90s squiggly rainbow shape.png",
       "sizeMb": 2
     },
     {
-      "path": "public/Turquoise squiggle with bold outline.png",
+      "path": "src/assets/Vibrant 90s squiggly rainbow shape.png",
+      "sizeMb": 2
+    },
+    {
+      "path": "public/assets/Turquoise squiggle with bold outline.png",
       "sizeMb": 1.96
     },
     {
-      "path": "public/Vibrant turquoise circle with bold outline.png",
+      "path": "src/assets/Turquoise squiggle with bold outline.png",
+      "sizeMb": 1.96
+    },
+    {
+      "path": "public/assets/Vibrant turquoise circle with bold outline.png",
       "sizeMb": 1.95
     },
     {
-      "path": "public/new-design (1).png",
+      "path": "src/assets/Vibrant turquoise circle with bold outline.png",
+      "sizeMb": 1.95
+    },
+    {
+      "path": "public/assets/new-design (1).png",
       "sizeMb": 1.89
     },
     {
-      "path": "public/download (1).png",
+      "path": "src/assets/new-design (1).png",
+      "sizeMb": 1.89
+    },
+    {
+      "path": "public/assets/download (1).png",
       "sizeMb": 1.85
     },
     {
-      "path": "public/Neon wavy square glow.png",
+      "path": "src/assets/download (1).png",
+      "sizeMb": 1.85
+    },
+    {
+      "path": "public/assets/Neon wavy square glow.png",
       "sizeMb": 1.57
     },
     {
-      "path": "public/download.png",
+      "path": "src/assets/Neon wavy square glow.png",
+      "sizeMb": 1.57
+    },
+    {
+      "path": "public/assets/download.png",
       "sizeMb": 1.56
     },
     {
-      "path": "public/new-design.png",
+      "path": "src/assets/download.png",
+      "sizeMb": 1.56
+    },
+    {
+      "path": "public/assets/new-design.png",
+      "sizeMb": 1.4
+    },
+    {
+      "path": "src/assets/new-design.png",
       "sizeMb": 1.4
     }
   ],
@@ -294,7 +526,9 @@
     "production": [
       "react",
       "react-dom",
-      "react-icons"
+      "react-icons",
+      "react-router-dom",
+      "tailwind"
     ],
     "development": [
       "@eslint/js",
@@ -307,12 +541,21 @@
       "globals",
       "vite"
     ],
-    "total": 12
+    "total": 14
   },
   "complexity": {
-    "averageFileSize": 21,
+    "averageFileSize": 23.784172661870503,
     "maxFileSize": 24117.248,
     "nestedDepth": 0,
-    "estimatedComplexity": "low"
+    "estimatedComplexity": "medium"
+  },
+  "gitRepo": {
+    "firstCommitDate": "2026-04-27",
+    "totalCommits": 9,
+    "numContributors": 0,
+    "currentBranch": "main",
+    "remoteUrls": [
+      "https://github.com/massiahtheruler/holy-grail-react.git"
+    ]
   }
 }
