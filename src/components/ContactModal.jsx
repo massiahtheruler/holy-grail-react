@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const preventDefault = (event) => {
   event.preventDefault();
@@ -31,6 +31,8 @@ const unlockPageScroll = () => {
   window.scrollTo(0, scrollY);
 };
 
+const CLOSE_ANIMATION_MS = 620;
+
 const ContactModal = ({
   isOpen,
   onClose,
@@ -38,17 +40,39 @@ const ContactModal = ({
   aboutContent,
   formText,
 }) => {
+  const [shouldRender, setShouldRender] = useState(isOpen);
+  const [isVisible, setIsVisible] = useState(false);
+
   useEffect(() => {
     if (!isOpen) {
-      return undefined;
+      setIsVisible(false);
+
+      const closeTimer = window.setTimeout(() => {
+        setShouldRender(false);
+      }, CLOSE_ANIMATION_MS);
+
+      return () => {
+        window.clearTimeout(closeTimer);
+      };
     }
+
+    setShouldRender(true);
+    const openTimer = window.requestAnimationFrame(() => {
+      setIsVisible(true);
+    });
 
     lockPageScroll();
 
     return () => {
-      unlockPageScroll();
+      window.cancelAnimationFrame(openTimer);
     };
   }, [isOpen]);
+
+  useEffect(() => {
+    if (!shouldRender) {
+      unlockPageScroll();
+    }
+  }, [shouldRender]);
 
   const handleTiltMove = (event) => {
     if (!window.matchMedia("(pointer: fine)").matches) {
@@ -71,12 +95,15 @@ const ContactModal = ({
     event.currentTarget.style.transform = "scale(1)";
   };
 
-  if (!isOpen) {
+  if (!shouldRender) {
     return null;
   }
 
   return (
-    <div className="contact-panel contact-panel--open" data-contact-modal>
+    <div
+      className={`contact-panel${isVisible ? " contact-panel--open" : ""}`}
+      data-contact-modal
+    >
       <div className="contact-panel__backdrop" onClick={onClose}></div>
 
       <div

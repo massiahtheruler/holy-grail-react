@@ -10,6 +10,8 @@ const API_KEY = "732b5f336bmshb2f878b725963c2p1df8eajsn8ca303dc62fd";
 const HITS_PER_PAGE = 16;
 const RESULTS_PER_PAGE = 6;
 const FEATURED_QUERIES = ["yeezy", "jordan", "dunk", "new balance"];
+const MIN_LOADING_MS = 500;
+const SKELETON_COUNT = 6;
 
 const fixImageUrl = (url) => {
   if (!url || typeof url !== "string") return "";
@@ -106,6 +108,10 @@ const preventDefault = (event) => {
   event.preventDefault();
 };
 
+const wait = (ms) => new Promise((resolve) => {
+  window.setTimeout(resolve, ms);
+});
+
 const Search = ({ onThemeToggle, cartCount = 0 }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [results, setResults] = useState([]);
@@ -196,11 +202,14 @@ const Search = ({ onThemeToggle, cartCount = 0 }) => {
 
       try {
         if (!submittedQuery) {
-          const responses = await Promise.all(
-            FEATURED_QUERIES.map((featuredQuery) =>
-              fetchSearchData(featuredQuery, 1),
+          const [responses] = await Promise.all([
+            Promise.all(
+              FEATURED_QUERIES.map((featuredQuery) =>
+                fetchSearchData(featuredQuery, 1),
+              ),
             ),
-          );
+            wait(MIN_LOADING_MS),
+          ]);
           const featuredResults = [];
 
           for (const response of responses) {
@@ -212,7 +221,10 @@ const Search = ({ onThemeToggle, cartCount = 0 }) => {
           return;
         }
 
-        const data = await fetchSearchData(submittedQuery, 1);
+        const [data] = await Promise.all([
+          fetchSearchData(submittedQuery, 1),
+          wait(MIN_LOADING_MS),
+        ]);
         const foundResults = collectResults(data);
         setResults(foundResults);
       } catch (err) {
@@ -291,7 +303,15 @@ const Search = ({ onThemeToggle, cartCount = 0 }) => {
             </div>
 
             <div className="shoe-list">
-              {loading && <p>Loading...</p>}
+              {loading &&
+                Array.from({ length: SKELETON_COUNT }).map((_, index) => (
+                  <div key={`search-skeleton-${index}`} className="shoe shoe--loading">
+                    <div className="skeleton skeleton__image"></div>
+                    <div className="skeleton skeleton__line skeleton__line--title"></div>
+                    <div className="skeleton skeleton__line"></div>
+                    <div className="skeleton skeleton__line"></div>
+                  </div>
+                ))}
               {!loading && error && <p>{error}</p>}
               {!loading && !error && currentResults.map((item, index) => {
                 const images = getImages(item);

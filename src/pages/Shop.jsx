@@ -11,6 +11,8 @@ const DEFAULT_PRODUCT_ID = "7265091813571";
 const CURRENCY = "USD";
 const MAX_CARDS = 50;
 const RESULTS_PER_PAGE = 6;
+const MIN_LOADING_MS = 500;
+const SKELETON_COUNT = 6;
 
 const fixImageUrl = (url) => {
   if (!url || typeof url !== "string") return "";
@@ -175,6 +177,10 @@ const preventDefault = (event) => {
   event.preventDefault();
 };
 
+const wait = (ms) => new Promise((resolve) => {
+  window.setTimeout(resolve, ms);
+});
+
 const createDemoPrice = (item, index = 0) => {
   const seed = `${item?.id || item?.sku || item?.title || item?.name || "grail"}-${index}`;
   const total = seed.split("").reduce((sum, char) => sum + char.charCodeAt(0), 0);
@@ -209,7 +215,10 @@ const Shop = ({ onThemeToggle, cartCount = 0, onAddToCart }) => {
       setLoading(true);
       setError("");
       try {
-        const data = await fetchRecommendations();
+        const [data] = await Promise.all([
+          fetchRecommendations(),
+          wait(MIN_LOADING_MS),
+        ]);
         const cards = collectCards(data);
         setAllResults(cards);
       } catch (err) {
@@ -241,6 +250,11 @@ const Shop = ({ onThemeToggle, cartCount = 0, onAddToCart }) => {
   const handleFilterChange = (event) => {
     const { name, checked } = event.target;
     setFilters((current) => ({ ...current, [name]: checked }));
+    setCurrentPage(1);
+  };
+
+  const clearFilters = () => {
+    setFilters({ men: false, women: false, kids: false });
     setCurrentPage(1);
   };
 
@@ -355,6 +369,9 @@ const Shop = ({ onThemeToggle, cartCount = 0, onAddToCart }) => {
                     <input type="checkbox" name="kids" checked={filters.kids} onChange={handleFilterChange} />
                     Kids
                   </label>
+                  <button type="button" className="shop__filters-clear" onClick={clearFilters}>
+                    Clear
+                  </button>
                 </div>
               </div>
             </div>
@@ -384,7 +401,15 @@ const Shop = ({ onThemeToggle, cartCount = 0, onAddToCart }) => {
             </div>
 
             <div className="shoe-list">
-              {loading && <p>Loading...</p>}
+              {loading &&
+                Array.from({ length: SKELETON_COUNT }).map((_, index) => (
+                  <div key={`shop-skeleton-${index}`} className="shoe shoe--loading">
+                    <div className="skeleton skeleton__image"></div>
+                    <div className="skeleton skeleton__line skeleton__line--title"></div>
+                    <div className="skeleton skeleton__line"></div>
+                    <div className="skeleton skeleton__line"></div>
+                  </div>
+                ))}
               {!loading && error && <p>{error}</p>}
               {!loading && !error && !results.length && (
                 <div className="shoe">
