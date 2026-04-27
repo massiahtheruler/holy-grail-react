@@ -1,0 +1,318 @@
+{
+  "rootFolder": "/Users/christinemarquez/Desktop/holy-grails-react",
+  "analyzedAt": "2026-04-26T04:10:12.653Z",
+  "rootStructure": [
+    {
+      "name": ".gitignore",
+      "type": "file",
+      "size": 253,
+      "lines": 25
+    },
+    {
+      "name": "README.md",
+      "type": "file",
+      "size": 1027,
+      "lines": 17
+    },
+    {
+      "name": "dist",
+      "type": "dir"
+    },
+    {
+      "name": "eslint.config.js",
+      "type": "file",
+      "size": 568,
+      "lines": 22
+    },
+    {
+      "name": "index.html",
+      "type": "file",
+      "size": 369,
+      "lines": 14
+    },
+    {
+      "name": "node_modules",
+      "type": "dir"
+    },
+    {
+      "name": "package-lock.json",
+      "type": "file",
+      "size": 84818,
+      "lines": 2469
+    },
+    {
+      "name": "package.json",
+      "type": "file",
+      "size": 643,
+      "lines": 29
+    },
+    {
+      "name": "public",
+      "type": "dir"
+    },
+    {
+      "name": "src",
+      "type": "dir"
+    },
+    {
+      "name": "vite.config.js",
+      "type": "file",
+      "size": 161,
+      "lines": 8
+    }
+  ],
+  "rootFileSnippets": {
+    "README.md": [
+      "# React + Vite",
+      "",
+      "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+      "",
+      "Currently, two official plugins are available:",
+      "",
+      "- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)",
+      "- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)",
+      "",
+      "## React Compiler"
+    ],
+    "eslint.config.js": [
+      "import js from '@eslint/js'",
+      "import globals from 'globals'",
+      "import reactHooks from 'eslint-plugin-react-hooks'",
+      "import reactRefresh from 'eslint-plugin-react-refresh'",
+      "import { defineConfig, globalIgnores } from 'eslint/config'",
+      "",
+      "export default defineConfig([",
+      "globalIgnores(['dist']),",
+      "{",
+      "files: ['**/*.{js,jsx}'],"
+    ],
+    "index.html": [
+      "<!doctype html>",
+      "<html lang=\"en\">",
+      "<head>",
+      "<meta charset=\"UTF-8\" />",
+      "<link rel=\"icon\" type=\"image/svg+xml\" href=\"/favicon.svg\" />",
+      "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />",
+      "<title>holy-grails-react</title>",
+      "</head>",
+      "<body>",
+      "<div id=\"root\"></div>"
+    ],
+    "package-lock.json": [
+      "{",
+      "\"name\": \"holy-grails-react\",",
+      "\"version\": \"0.0.0\",",
+      "\"lockfileVersion\": 3,",
+      "\"requires\": true,",
+      "\"packages\": {",
+      "\"\": {",
+      "\"name\": \"holy-grails-react\",",
+      "\"version\": \"0.0.0\",",
+      "\"dependencies\": {"
+    ],
+    "package.json": [
+      "{",
+      "\"name\": \"holy-grails-react\",",
+      "\"private\": true,",
+      "\"version\": \"0.0.0\",",
+      "\"type\": \"module\",",
+      "\"scripts\": {",
+      "\"dev\": \"vite\",",
+      "\"build\": \"vite build\",",
+      "\"lint\": \"eslint .\",",
+      "\"preview\": \"vite preview\""
+    ],
+    "vite.config.js": [
+      "import { defineConfig } from 'vite'",
+      "import react from '@vitejs/plugin-react'",
+      "",
+      "// https://vite.dev/config/",
+      "export default defineConfig({",
+      "plugins: [react()],",
+      "})",
+      ""
+    ]
+  },
+  "importantFolders": [
+    {
+      "path": "public",
+      "category": "assets",
+      "fileCount": 55
+    },
+    {
+      "path": "src/assets",
+      "category": "assets",
+      "fileCount": 3
+    }
+  ],
+  "readmeParagraphs": {
+    "root": "# React + Vite"
+  },
+  "totals": {
+    "numFiles": 77,
+    "numDirs": 5,
+    "totalSizeBytes": 30976499,
+    "totalLinesOfCode": 1617
+  },
+  "fileCategories": {
+    "other": 67,
+    "documentation": 1,
+    "source": 7,
+    "config": 2
+  },
+  "linesOfCodePerLanguage": {
+    "JavaScript": 1617
+  },
+  "filesPerLanguage": {
+    "JavaScript": 7
+  },
+  "projectTypes": [
+    "JavaScript/Node.js"
+  ],
+  "frameworks": [
+    "React",
+    "Vite"
+  ],
+  "entryPoints": [],
+  "ciCdTools": [],
+  "packageManagers": [
+    "npm/yarn"
+  ],
+  "topLevelDirectories": [
+    {
+      "name": "src",
+      "numFiles": 14,
+      "totalLoc": 1587,
+      "dominantLanguage": "JavaScript"
+    },
+    {
+      "name": "public",
+      "numFiles": 55,
+      "totalLoc": 0
+    }
+  ],
+  "detailedDirectories": [
+    {
+      "path": "src",
+      "name": "src",
+      "level": 1,
+      "numFiles": 14,
+      "totalLoc": 1587,
+      "dominantLanguage": "JavaScript",
+      "category": "General",
+      "description": "General module with 14 files (JavaScript)",
+      "subdirectories": [
+        {
+          "path": "src/assets",
+          "name": "assets",
+          "level": 2,
+          "numFiles": 3,
+          "totalLoc": 0,
+          "category": "General",
+          "description": "General module with 3 files",
+          "subdirectories": []
+        }
+      ]
+    },
+    {
+      "path": "public",
+      "name": "public",
+      "level": 1,
+      "numFiles": 55,
+      "totalLoc": 0,
+      "category": "General",
+      "description": "General module with 55 files",
+      "subdirectories": []
+    }
+  ],
+  "architecturalInsights": {
+    "coreApplications": [],
+    "entryPointDetails": [],
+    "serviceArchitecture": {
+      "microservices": [],
+      "monoliths": [],
+      "libraries": []
+    },
+    "layeredArchitecture": {
+      "presentation": [],
+      "business": [],
+      "data": [],
+      "infrastructure": []
+    }
+  },
+  "largeFiles": [
+    {
+      "path": "public/Colorful triangle with splattered paint.png",
+      "sizeMb": 2.3
+    },
+    {
+      "path": "public/Glowing pink ring with black outline.png",
+      "sizeMb": 2.18
+    },
+    {
+      "path": "public/new-design (2).png",
+      "sizeMb": 2.16
+    },
+    {
+      "path": "public/Bold purple triangle with jagged border.png",
+      "sizeMb": 2.01
+    },
+    {
+      "path": "public/Vibrant 90s squiggly rainbow shape.png",
+      "sizeMb": 2
+    },
+    {
+      "path": "public/Turquoise squiggle with bold outline.png",
+      "sizeMb": 1.96
+    },
+    {
+      "path": "public/Vibrant turquoise circle with bold outline.png",
+      "sizeMb": 1.95
+    },
+    {
+      "path": "public/new-design (1).png",
+      "sizeMb": 1.89
+    },
+    {
+      "path": "public/download (1).png",
+      "sizeMb": 1.85
+    },
+    {
+      "path": "public/Neon wavy square glow.png",
+      "sizeMb": 1.57
+    },
+    {
+      "path": "public/download.png",
+      "sizeMb": 1.56
+    },
+    {
+      "path": "public/new-design.png",
+      "sizeMb": 1.4
+    }
+  ],
+  "dependencies": {
+    "production": [
+      "react",
+      "react-dom",
+      "react-icons"
+    ],
+    "development": [
+      "@eslint/js",
+      "@types/react",
+      "@types/react-dom",
+      "@vitejs/plugin-react",
+      "eslint",
+      "eslint-plugin-react-hooks",
+      "eslint-plugin-react-refresh",
+      "globals",
+      "vite"
+    ],
+    "total": 12
+  },
+  "complexity": {
+    "averageFileSize": 21,
+    "maxFileSize": 24117.248,
+    "nestedDepth": 0,
+    "estimatedComplexity": "low"
+  }
+}

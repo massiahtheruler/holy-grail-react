@@ -1,0 +1,277 @@
+<!-- <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Holy-Grails</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/37a617f3fa.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="fixed__actions">
+      <button class="floating__btn" type="button" onclick="toggleContrast()">
+        <i class="fa-solid fa-circle-half-stroke"></i>
+      </button>
+      <button
+        class="mail__btn click"
+        type="button"
+        onclick="toggleContactModal()"
+      >
+        <i class="fa-solid fa-envelope"></i>
+      </button>
+    </div>
+    <section id="search__header" class="page-section page-section--1">
+      <div class="container header__container search__header--container">
+        <div class="row header__row search__header--row">
+          <figure class="search__header--banner">
+            <img
+              src="high-resolution-color-logo (3)-Photoroom.png"
+              class="banner__side"
+              alt=""
+            />
+            <img class="search__banner--img" src="new-design (2).png" alt="" />
+            <img
+              src="color-est-layout (1)-Photoroom.png"
+              class="banner__side"
+              alt=""
+            />
+          </figure>
+        </div>
+      </div>
+    </section>
+    <section class="search-page page-section page-section--2">
+      <div class="container search__container">
+        <div class="row search__row">
+          <div class="search__hero">
+            <img src="download (1).png" class="search__header" alt="" />
+            <h1 class="search__title">Search Grails</h1>
+          </div>
+          <div class="search-page__form--spot">
+            <div class="back__button-lo">
+              <a class="search-page__home" href="index.html">Back Home</a>
+            </div>
+            <form class="search-page__form" onsubmit="runSearch(event)">
+              <input
+                id="grail__search"
+                class="grail__search"
+                type="search"
+                name="query"
+                placeholder="Search sneakers, brands, drops"
+                data-search-input
+              />
+              <button class="search_btn" type="submit">Search</button>
+            </form>
+          </div>
+          <p class="shoe__count">
+            Showing <span data-search-count>0</span> results
+          </p>
+          <div class="shoe__pages">
+            <button
+              type="button"
+              data-search-prev
+              onclick="changeSearchPage(-1)"
+            >
+              Previous
+            </button>
+            <span data-search-page>Page 1</span>
+            <button
+              type="button"
+              data-search-next
+              onclick="changeSearchPage(1)"
+            >
+              Next
+            </button>
+          </div>
+          <div class="shoe-list" data-search-results></div>
+        </div>
+      </div>
+    </section>
+    <section class="footer page-section page-section--3">
+      <div class="container footer__container">
+        <div class="row footer__row">
+          <button
+            class="footer__logo-link"
+            type="button"
+            onclick="scrollToTop()"
+          >
+            <figure class="footer_img">
+              <img
+                src="liquid logo white-Photoroom.png"
+                class="footer__logo"
+                alt=""
+              />
+            </figure>
+          </button>
+          <div class="footer__list">
+            <a
+              href="index.html"
+              class="link__hover-effect--white nav__link--anchor link__hover-effect"
+              >Home</a
+            >
+            <a
+              href="shop.html"
+              class="link__hover-effect--white nav__link--anchor link__hover-effect"
+              >Shop</a
+            >
+            <a
+              href="search.html"
+              class="link__hover-effect--white nav__link--anchor link__hover-effect"
+              >Search</a
+            >
+            <a
+              href="#"
+              class="link__hover-effect--white nav__link--anchor link__hover-effect"
+              >Insta</a
+            >
+            <a
+              href="#"
+              class="link__hover-effect--white nav__link--anchor link__hover-effect"
+              onclick="toggleContactModal()"
+              >Contact</a
+            >
+          </div>
+          <p class="footer__copyrite">King Massiah The Ruler &copy 2020</p>
+        </div>
+      </div>
+    </section>
+    <div class="modal search-modal" data-search-modal>
+      <div class="modal__backdrop" onclick="closeSearchModal()"></div>
+      <div class="modal__card">
+        <div class="modal__top">
+          <div class="modal__switch">
+            <button
+              class="modal__nav-btn"
+              type="button"
+              onclick="changeSearchModalCard(-1)"
+            >
+              Prev Shoe
+            </button>
+            <span class="modal__card-count" data-search-modal-card-count
+              >1 / 1</span
+            >
+            <button
+              class="modal__nav-btn"
+              type="button"
+              onclick="changeSearchModalCard(1)"
+            >
+              Next Shoe
+            </button>
+          </div>
+          <button
+            class="modal__close"
+            type="button"
+            onclick="closeSearchModal()"
+          >
+            Close
+          </button>
+        </div>
+        <img class="modal__img" data-search-modal-image src="" alt="" />
+        <div class="modal__controls">
+          <button type="button" onclick="changeSearchModalImage(-1)">
+            Prev
+          </button>
+          <span data-search-modal-count>1 / 1</span>
+          <button type="button" onclick="changeSearchModalImage(1)">
+            Next
+          </button>
+        </div>
+        <h2 class="modal__title" data-search-modal-title></h2>
+        <p class="modal__sizes" data-search-modal-subtitle></p>
+        <p class="modal__meta" data-search-modal-meta></p>
+        <a class="modal__home" href="index.html">Back To Home</a>
+      </div>
+    </div>
+    <div class="contact-panel" data-contact-modal>
+      <div class="contact-panel__backdrop" onclick="closeContactModal()"></div>
+      <div class="contact-panel__card">
+        <button
+          class="contact-panel__close"
+          type="button"
+          onclick="closeContactModal()"
+        >
+          Close
+        </button>
+        <div class="contact-panel__half contact-panel__about">
+          <h2 class="contact-panel__title">Search, Save The Feel</h2>
+          <p class="contact-panel__text">
+            Stop the hunt. If it’s worth having, it’s already here. King
+            Massiah’s Holy Grails is the final destination for anyone tired of
+            chasing <span class="line">goats</span> My fault Ahem.
+            <b>GHOSTS</b> across a dozen different sites. Our mission is to keep
+            the vault stocked with massive quantities of luxury footwear and
+            streetwear, so you can spend less time scrolling and more time
+            steppin'. <b>Make Your GRAIL the GREATEST Story Ever TOLD</b>.
+          </p>
+          <div class="contact-panel__chips">
+            <img src="color-arc-layout.png" class="cmodal__img" />
+            <img src="color-est-layout (2).png" class="cmodal__img" />
+            <img src="color-rectangle-layout.png" class="cmodal__img" />
+          </div>
+        </div>
+        <div class="contact-panel__half contact-panel__form-half">
+          <h2 class="contact-panel__title">Send a message</h2>
+          <p class="contact-panel__text">
+            Ask a question without leaving your search results.
+          </p>
+          <form class="contact-panel__form" onsubmit="contact(event)">
+            <div class="form__item">
+              <label class="form__item--label">
+                <input
+                  class="input"
+                  name="user_name"
+                  type="text"
+                  placeholder="Name"
+                  aria-label="Name"
+                />
+              </label>
+            </div>
+            <div class="form__item">
+              <label class="form__item--label">
+                <input
+                  class="input"
+                  name="user_email"
+                  type="text"
+                  placeholder="Email"
+                  aria-label="Email"
+                />
+              </label>
+            </div>
+            <div class="form__item">
+              <label class="form__item--label">
+                <textarea
+                  class="input"
+                  name="user_message"
+                  type="text"
+                  placeholder="Message"
+                  aria-label="Message"
+                ></textarea>
+              </label>
+            </div>
+            <button class="form__submit" type="submit">Send Message</button>
+            <div
+              class="contact-panel__status modal__overlay modal__overlay--load"
+            >
+              <i class="fa-solid fa-spinner"></i>
+            </div>
+            <div
+              class="contact-panel__status modal__overlay modal__overlay--success"
+            >
+              Thanks for the message! Looking forward to speaking with you.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="search.js"></script>
+  </body>
+</html> -->
