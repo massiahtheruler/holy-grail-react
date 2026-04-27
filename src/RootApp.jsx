@@ -4,6 +4,7 @@ import App from "./pages/App.jsx";
 import Search from "./pages/Search.jsx";
 import Shop from "./pages/Shop.jsx";
 import Cart from "./pages/Cart.jsx";
+import { normalizeCartItem } from "./lib/cartPricing.js";
 
 const CART_STORAGE_KEY = "holy-grails-react-cart";
 
@@ -17,7 +18,7 @@ const RootApp = () => {
     }
 
     try {
-      return JSON.parse(storedCart);
+      return JSON.parse(storedCart).map(normalizeCartItem);
     } catch {
       return [];
     }
@@ -42,17 +43,20 @@ const RootApp = () => {
 
   const addToCart = (item) => {
     setCartItems((current) => {
-      const existingItem = current.find((cartItem) => cartItem.key === item.key);
+      const normalizedItem = normalizeCartItem(item);
+      const existingItem = current.find(
+        (cartItem) => cartItem.key === normalizedItem.key,
+      );
 
       if (existingItem) {
         return current.map((cartItem) =>
-          cartItem.key === item.key
+          cartItem.key === normalizedItem.key
             ? { ...cartItem, quantity: cartItem.quantity + 1 }
             : cartItem,
         );
       }
 
-      return [...current, { ...item, quantity: 1 }];
+      return [...current, normalizedItem];
     });
   };
 
@@ -87,7 +91,13 @@ const RootApp = () => {
         />
         <Route
           path="/search"
-          element={<Search onThemeToggle={toggleTheme} cartCount={cartCount} />}
+          element={
+            <Search
+              onThemeToggle={toggleTheme}
+              cartCount={cartCount}
+              onAddToCart={addToCart}
+            />
+          }
         />
         <Route
           path="/shop"

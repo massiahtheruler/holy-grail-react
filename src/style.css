@@ -1089,6 +1089,47 @@ shop__header {
   cursor: pointer;
 }
 
+.shoe--card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.shoe__open {
+  display: block;
+  width: 100%;
+  padding: 0;
+  background: transparent;
+  border: none;
+  text-align: left;
+  box-shadow: none;
+}
+
+.shoe__open .shoe__title {
+  margin-bottom: 0;
+}
+
+.shoe__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.shoe__price,
+.modal__price {
+  color: rgb(123, 67, 228);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.shoe__add {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
 .shoe__images {
   display: grid;
   gap: 12px;
@@ -1248,6 +1289,10 @@ shop__header {
   margin-bottom: 10px;
   font-size: 16px;
   line-height: 1.5;
+}
+
+.modal__price {
+  margin-bottom: 10px;
 }
 
 .modal__add {

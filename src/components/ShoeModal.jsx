@@ -1,4 +1,9 @@
 import { useEffect } from "react";
+import {
+  detectAudience,
+  formatCurrency,
+  getDemoPriceForItem,
+} from "../lib/cartPricing.js";
 
 const fixImageUrl = (url) => {
   if (!url || typeof url !== "string") return "";
@@ -156,6 +161,8 @@ const ShoeModal = ({
   const title = getName(shoe);
   const sizes = getSizes(shoe);
   const meta = getMeta(shoe);
+  const audience = detectAudience(shoe, itemIndex);
+  const price = getDemoPriceForItem(shoe, itemIndex);
 
   return (
     <div className="modal shop-modal modal--open">
@@ -196,6 +203,9 @@ const ShoeModal = ({
         </div>
 
         <h2 className="modal__title">{title}</h2>
+        <p className="modal__price">
+          {formatCurrency(price)} · {audience === "kids" ? "Kids" : audience === "women" ? "Women" : "Men"}
+        </p>
         <p className="modal__sizes">{sizes ? `Sizes: ${sizes}` : "Sizes unavailable"}</p>
         <p className="modal__meta">{meta || "Recommendation entry with image data."}</p>
         {onAddToCart && (

@@ -4,6 +4,11 @@ import Footer from "../components/Footer.jsx";
 import FixedActions from "../components/FixedActions.jsx";
 import ContactModal from "../components/ContactModal.jsx";
 import ShoeModal from "../components/ShoeModal.jsx";
+import {
+  detectAudience,
+  formatCurrency,
+  getDemoPriceForItem,
+} from "../lib/cartPricing.js";
 
 const API_HOST = "kickscrew-sneakers-data.p.rapidapi.com";
 const API_KEY = "732b5f336bmshb2f878b725963c2p1df8eajsn8ca303dc62fd";
@@ -181,12 +186,6 @@ const wait = (ms) => new Promise((resolve) => {
   window.setTimeout(resolve, ms);
 });
 
-const createDemoPrice = (item, index = 0) => {
-  const seed = `${item?.id || item?.sku || item?.title || item?.name || "grail"}-${index}`;
-  const total = seed.split("").reduce((sum, char) => sum + char.charCodeAt(0), 0);
-  return Number((120 + (total % 180) + 0.99).toFixed(2));
-};
-
 const Shop = ({ onThemeToggle, cartCount = 0, onAddToCart }) => {
   const navigate = useNavigate();
   const [allResults, setAllResults] = useState([]);
@@ -247,6 +246,22 @@ const Shop = ({ onThemeToggle, cartCount = 0, onAddToCart }) => {
     setSelectedImageIndex(0);
   };
 
+  const buildCartItem = (item, index) => {
+    return {
+      key:
+        item?.id ||
+        item?.sku ||
+        item?.handle ||
+        item?.slug ||
+        `${getName(item, index)}-${index}`,
+      name: getName(item, index),
+      subtitle: getSubtitle(item),
+      image: getImages(item)[0] || "",
+      audience: detectAudience(item, index),
+      price: getDemoPriceForItem(item, index),
+    };
+  };
+
   const handleFilterChange = (event) => {
     const { name, checked } = event.target;
     setFilters((current) => ({ ...current, [name]: checked }));
@@ -271,20 +286,13 @@ const Shop = ({ onThemeToggle, cartCount = 0, onAddToCart }) => {
   };
 
   const handleAddCurrentShoeToCart = () => {
-    if (!selectedShoe || !onAddToCart) return;
+    if (!selectedShoe || selectedShoeIndex === -1 || !onAddToCart) return;
+    onAddToCart(buildCartItem(selectedShoe, selectedShoeIndex));
+  };
 
-    onAddToCart({
-      key:
-        selectedShoe?.id ||
-        selectedShoe?.sku ||
-        selectedShoe?.handle ||
-        selectedShoe?.slug ||
-        `${getName(selectedShoe, selectedShoeIndex)}-${selectedShoeIndex}`,
-      name: getName(selectedShoe, selectedShoeIndex),
-      subtitle: getSubtitle(selectedShoe),
-      image: getImages(selectedShoe)[0] || "",
-      price: createDemoPrice(selectedShoe, selectedShoeIndex),
-    });
+  const handleAddCardToCart = (item, index) => {
+    if (!onAddToCart) return;
+    onAddToCart(buildCartItem(item, index));
   };
 
   const showNextImage = () => {
@@ -422,18 +430,30 @@ const Shop = ({ onThemeToggle, cartCount = 0, onAddToCart }) => {
                 const absoluteIndex = pageStart + index;
                 const name = getName(item, absoluteIndex);
                 const subtitle = getSubtitle(item);
+                const price = getDemoPriceForItem(item, absoluteIndex);
 
                 return (
-                  <button
-                    key={absoluteIndex}
-                    className="shoe shoe--clickable"
-                    type="button"
-                    onClick={() => openShoeModal(item, absoluteIndex)}
-                  >
-                    {images[0] && <img className="shoe__img" src={images[0]} alt={name} />}
+                  <article key={absoluteIndex} className="shoe shoe--card">
+                    <button
+                      className="shoe__open shoe--clickable"
+                      type="button"
+                      onClick={() => openShoeModal(item, absoluteIndex)}
+                    >
+                      {images[0] && <img className="shoe__img" src={images[0]} alt={name} />}
+                    </button>
                     <div className="shoe__title">{name}</div>
                     {subtitle && <p className="shoe__sizes">{subtitle}</p>}
-                  </button>
+                    <div className="shoe__actions">
+                      <span className="shoe__price">{formatCurrency(price)}</span>
+                      <button
+                        className="shoe__add"
+                        type="button"
+                        onClick={() => handleAddCardToCart(item, absoluteIndex)}
+                      >
+                        Add To Cart
+                      </button>
+                    </div>
+                  </article>
                 );
               })}
             </div>

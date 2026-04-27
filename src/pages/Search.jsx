@@ -4,6 +4,11 @@ import Footer from "../components/Footer.jsx";
 import FixedActions from "../components/FixedActions.jsx";
 import ContactModal from "../components/ContactModal.jsx";
 import ShoeModal from "../components/ShoeModal.jsx";
+import {
+  detectAudience,
+  formatCurrency,
+  getDemoPriceForItem,
+} from "../lib/cartPricing.js";
 
 const API_HOST = "kickscrew-sneakers-data.p.rapidapi.com";
 const API_KEY = "732b5f336bmshb2f878b725963c2p1df8eajsn8ca303dc62fd";
@@ -112,7 +117,7 @@ const wait = (ms) => new Promise((resolve) => {
   window.setTimeout(resolve, ms);
 });
 
-const Search = ({ onThemeToggle, cartCount = 0 }) => {
+const Search = ({ onThemeToggle, cartCount = 0, onAddToCart }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -141,6 +146,32 @@ const Search = ({ onThemeToggle, cartCount = 0 }) => {
     setSelectedShoe(null);
     setSelectedShoeIndex(-1);
     setSelectedImageIndex(0);
+  };
+
+  const buildCartItem = (item, index) => {
+    return {
+      key:
+        item?.id ||
+        item?.sku ||
+        item?.handle ||
+        item?.slug ||
+        `${getName(item, index)}-${index}`,
+      name: getName(item, index),
+      subtitle: getSubtitle(item),
+      image: getImages(item)[0] || "",
+      audience: detectAudience(item, index),
+      price: getDemoPriceForItem(item, index),
+    };
+  };
+
+  const handleAddCardToCart = (item, index) => {
+    if (!onAddToCart) return;
+    onAddToCart(buildCartItem(item, index));
+  };
+
+  const handleAddCurrentShoeToCart = () => {
+    if (!selectedShoe || selectedShoeIndex === -1 || !onAddToCart) return;
+    onAddToCart(buildCartItem(selectedShoe, selectedShoeIndex));
   };
 
   const showNextImage = () => {
@@ -318,18 +349,30 @@ const Search = ({ onThemeToggle, cartCount = 0 }) => {
                 const absoluteIndex = pageStart + index;
                 const name = getName(item, absoluteIndex);
                 const subtitle = getSubtitle(item);
+                const price = getDemoPriceForItem(item, absoluteIndex);
 
                 return (
-                  <button
-                    key={absoluteIndex}
-                    className="shoe shoe--clickable"
-                    type="button"
-                    onClick={() => openShoeModal(item, absoluteIndex)}
-                  >
-                    {images[0] && <img className="shoe__img" src={images[0]} alt={name} />}
-                    <div className="shoe__title">{name}</div>
+                  <article key={absoluteIndex} className="shoe shoe--card">
+                    <button
+                      className="shoe__open shoe--clickable"
+                      type="button"
+                      onClick={() => openShoeModal(item, absoluteIndex)}
+                    >
+                      {images[0] && <img className="shoe__img" src={images[0]} alt={name} />}
+                      <div className="shoe__title">{name}</div>
+                    </button>
                     {subtitle && <p className="shoe__sizes">{subtitle}</p>}
-                  </button>
+                    <div className="shoe__actions">
+                      <span className="shoe__price">{formatCurrency(price)}</span>
+                      <button
+                        className="shoe__add"
+                        type="button"
+                        onClick={() => handleAddCardToCart(item, absoluteIndex)}
+                      >
+                        Add To Cart
+                      </button>
+                    </div>
+                  </article>
                 );
               })}
             </div>
@@ -356,6 +399,7 @@ const Search = ({ onThemeToggle, cartCount = 0 }) => {
         onPrevImage={showPrevImage}
         onNextItem={showNextShoe}
         onPrevItem={showPrevShoe}
+        onAddToCart={handleAddCurrentShoeToCart}
       />
 
       <ContactModal
