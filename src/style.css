@@ -47,6 +47,13 @@ button {
   font-size: 18px;
   transition: all 300ms ease-in;
 }
+
+button.shoe__open.shoe--clickable:hover {
+  box-shadow: 0 -40px 8px 16px rgba(139, 15, 255, 0.481);
+  background-color: #00000000;
+  color: rgba(0, 0, 0, 0);
+}
+
 button:hover:active {
   transform: scale(0.9);
   box-shadow: inset 0 0 16px 0.08px rgba(47, 79, 79, 0.699);
@@ -422,6 +429,7 @@ LANDING PAGE
   overflow: hidden;
   transform-style: preserve-3d;
   will-change: transform;
+  height: 100%;
 }
 
 .showroom-card::after {
@@ -1074,7 +1082,7 @@ shop__header {
 
 .shoe:hover {
   transform: scale(1.05);
-  box-shadow: -0px 8px 16px 4px rgb(30, 23, 47);
+  box-shadow: -0px 8px 16px 4px rgba(30, 23, 47, 0.083);
 }
 
 .shoe:active,
@@ -1215,6 +1223,8 @@ shop__header {
   -ms-overflow-style: none;
   border-radius: 32px;
   padding: 24px;
+  justify-content: center;
+  align-items: center;
   background: linear-gradient(180deg, rgb(255, 249, 231), rgb(255, 240, 210));
   box-shadow: 0 12px 40px rgba(64, 28, 110, 0.28);
   transition:
@@ -1265,7 +1275,7 @@ shop__header {
   align-items: center;
   justify-content: center;
   gap: 16px;
-  margin: 16px 0 20px;
+margin: 8px 0;
   color: rgb(79, 2, 150);
   font-size: 14px;
   flex-direction: column;
@@ -1538,7 +1548,7 @@ MODAL
 */
 
 .modal__title {
-  padding-top: 80px;
+  padding-top: 40px;
   font-size: 24px;
   font-weight: 700;
   font-style: bold;
@@ -2233,7 +2243,6 @@ MOTION + LOADING
   opacity: 1;
   transform: none;
 }
-
 
 .contact-panel__about,
 .contact-panel__form-half {
