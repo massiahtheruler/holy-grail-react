@@ -216,10 +216,9 @@ Holy Grails React is one of those projects where the engineering and the art dir
 
 It let me practice a real migration, keep control over the visual identity, and build a cleaner front-end foundation without stripping away the personality that made the original interesting in the first place. It is still growing, but that is part of what I like about it. It already works as a React storefront shell, and it gives me a strong base to keep layering better data, stronger commerce logic, and more advanced product behavior on top.
 
-npm install
-npm run dev
+##
 
-
+```
 - custom BEM scoped Sass for high fidelity UI details (glassmorphism and custom animations) that require pixel-perfect precision."
 - "Engineered a Digital Showroom experience using interactive parallax and glassmorphism to mirror the exclusivity of the collection."
 - "I chose to implement a custom BEM architecture to manage the complexity of the e-commerce routing."
@@ -403,7 +402,7 @@ I would rather be clear about that than fake full production ecommerce claims wh
 ```bash
 npm install
 npm run dev
-```
+
 
 Then open the local Vite server in the browser.
 
